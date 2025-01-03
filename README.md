@@ -1,29 +1,97 @@
-# ai-chat-app
+# AI-over-AI
 
-This template should help get you started developing with Vue 3 in Vite.
+Экспериментальный проект по созданию иерархической системы ИИ с многоуровневой памятью.
 
-## Recommended IDE Setup
+## Концепция
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Проект реализует идею "ИИ поверх ИИ" - метасистему, где языковая модель работает с иерархически организованной памятью, формируя более сложное поведение на основе базовых возможностей.
 
-## Customize configuration
+### Ключевые особенности:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+1. **Иерархическая память**
+   - Уровень 0: Исходные сообщения и диалоги
+   - Уровень 1: Резюме групп сообщений
+   - Уровень 2: Обобщения резюме
+   - И так далее...
 
-## Project Setup
+2. **Динамическое формирование навыков**
+   - Автоматическое создание резюме диалогов
+   - Сохранение контекста взаимодействий
+   - Возможность обращения к прошлому опыту
 
-```sh
+3. **Гибкая архитектура**
+   - Поддержка разных языковых моделей
+   - WebSocket для real-time взаимодействия
+   - Потоковая обработка ответов
+
+## Установка
+
+```bash
+# Клонируем репозиторий
+git clone https://github.com/tuniekov/ai-over-ai.git
+cd ai-over-ai
+
+# Устанавливаем зависимости
 npm install
+cd server && npm install
+
+# Создаем .env файл
+cp .env.example .env
 ```
 
-### Compile and Hot-Reload for Development
+## Настройка
 
-```sh
+1. Отредактируйте `.env`:
+```env
+AITUNNEL_API_KEY=your_api_key
+```
+
+2. Настройте модели в `src/settings.js`
+
+## Запуск
+
+```bash
+# Запускаем сервер
+cd server
+npm start
+
+# В другом терминале запускаем клиент
+cd ..
 npm run dev
 ```
 
-### Compile and Minify for Production
+## Структура проекта
 
-```sh
-npm run build
 ```
+├── server/                 # Серверная часть
+│   ├── memory/            # Файлы памяти
+│   ├── commands.js        # Команды для работы с файлами
+│   ├── fileUtils.js       # Утилиты файловой системы
+│   ├── index.js           # Основной сервер
+│   └── prompts.js         # Системные промпты
+│
+├── src/                   # Клиентская часть
+│   ├── components/        # Vue компоненты
+│   └── settings.js        # Настройки моделей
+│
+└── README.md
+```
+
+## Функциональность
+
+- Real-time чат с поддержкой потоковых ответов
+- Переключение между разными моделями
+- Сохранение и загрузка истории диалогов
+- Иерархическая организация памяти
+- Автоматическое создание резюме
+
+## Разработка
+
+Проект использует:
+- Vue 3 + Vite для фронтенда
+- Node.js + WebSocket для бэкенда
+- AITunnel API для работы с языковыми моделями
+
+## Лицензия
+
+MIT
